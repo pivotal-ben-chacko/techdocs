@@ -10,7 +10,7 @@ check_tooling () {
 }
 
 generate () {
-  techdocs-cli generate --output-dir ./site
+  techdocs-cli generate --no-docker --output-dir ./site
 }
 
 publish () {
