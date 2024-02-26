@@ -9,10 +9,6 @@ check_tooling () {
   fi
 }
 
-download () {
-  git clone https://github.com/pivotal-ben-chacko/techdocs.git && cd techdocs 
-}
-
 generate () {
   techdocs-cli generate --output-dir ./site
 }
@@ -28,7 +24,6 @@ publish () {
 
 init () {
   check_tooling
-  download
   generate
   publish
 }
