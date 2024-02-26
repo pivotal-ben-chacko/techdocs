@@ -2,10 +2,6 @@
 
 set -e 
 
-export AWS_ACCESS_KEY_ID=ezzYtqUzA36LFxTbYVkZ
-export AWS_SECRET_ACCESS_KEY=dq3Q8adHk6hxvq2hPtu7124lx68bUEKKxr5z5vde
-export AWS_REGION=us-east-1
-
 check_tooling () {
   if [ ! command -v techdocs-cli &> /dev/null ]; then
     echo "Unable to continue... Please install techdocs-cli."
