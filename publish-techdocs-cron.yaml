@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: techdocs
+  labels:
+    name: techdocs
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: blobstore-secret
+  namespace: techdocs
+type: Opaque
+stringData:
+  AWS_ACCESS_KEY_ID: <AWS-KEY>
+  AWS_SECRET_ACCESS_KEY: <AWS-ACCESS-KEY>
+  AWS_REGION: us-east-1
+  GIT_URL: https://github.com/pivotal-ben-chacko/techdocs.git
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: publish-to-blob
+  namespace: techdocs
+spec:
+  schedule: "*/10 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: publish-to-blob
+            image: beninaskaria/vmware:techdocs-v4
+            envFrom:
+            - secretRef:
+                name: blobstore-secret
+            args:
+            - bash
+            - run.sh
+          restartPolicy: OnFailure

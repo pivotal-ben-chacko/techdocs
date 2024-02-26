@@ -14,7 +14,6 @@ generate () {
 }
 
 publish () {
-  echo "DEBUG: $AWS_ACCESS_KEY_ID"
   techdocs-cli publish 	--publisher-type awsS3 \
    			--awsEndpoint https://minio-api.skynetsystems.io \
 			--storage-name techdocs \
